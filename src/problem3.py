@@ -2,9 +2,9 @@
 Final exam, problem 3.
 
 Authors: David Mutchler, Dave Fisher, Matt Boutell, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.  May 2018.
+         their colleagues and Bryce Pruemer.  May 2018.
 
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 import time
@@ -92,8 +92,41 @@ def problem3(point, circle1, circle2, window):
        :type circle2:  rg.Circle
       :type window:    rg.RoseWindow
     """
+    point.attach_to(window)
+    circle1.attach_to(window)
+    circle2.attach_to(window)
+
+
+    line1 = rg.Line(point, circle1.center)
+    line2 = rg.Line(circle1.center, circle2.center)
+    line3 = rg.Line(circle2.center, point)
+
+    line1.color = circle1.fill_color
+    line2.color = circle1.fill_color
+    line3.color = circle1.fill_color
+
+    line1.attach_to(window)
+    line2.attach_to(window)
+    line3.attach_to(window)
+
+    midpoint1 = rg.Point((line1.start.x + line1.end.x)/2 , (line1.start.y + line1.end.y)/2)
+    midpoint2 = rg.Point((line2.start.x + line2.end.x) / 2, (line2.start.y + line2.end.y) / 2)
+    midpoint3 = rg.Point((line3.start.x + line3.end.x) / 2, (line3.start.y + line3.end.y) / 2)
+
+    midline1 = rg.Line(midpoint1, midpoint2)
+    midline2 = rg.Line(midpoint2, midpoint3)
+    midline3 = rg.Line(midpoint3, midpoint1)
+
+    midline1.color = circle2.fill_color
+    midline2.color = circle2.fill_color
+    midline3.color = circle2.fill_color
+
+    midline1.attach_to(window)
+    midline2.attach_to(window)
+    midline3.attach_to(window)
+    window.render()
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
 
